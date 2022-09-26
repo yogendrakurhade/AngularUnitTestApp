@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { WebStorageService } from './web-storage.service';
@@ -6,7 +7,11 @@ describe('WebStorageService', () => {
   let service: WebStorageService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: HttpClient, useValue: jasmine.createSpyObj('HttpClient', ['get', 'put']) }
+      ]
+    });
     service = TestBed.inject(WebStorageService);
   });
 
